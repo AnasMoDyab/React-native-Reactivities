@@ -1,26 +1,49 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Button, StyleSheet, View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { createStackNavigator} from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import HomePage from '../../features/Home/HomePage';
 import ActivitiesDashboard from '../../features/Activities/dashboard/ActivitiesDashboard';
-import { Icon } from 'react-native-elements'
+import { Overlay, Text, Button, Divider } from 'react-native-elements'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LoginForm from './../../features/users/LoginForm';
 import RegisterForm from './../../features/users/RegisterForm';
 import ActivityDetails from './../../features/Activities/details/ActivityDetails';
-
+import { Appbar, Menu, Provider } from 'react-native-paper';
+import { NavigationStackProp } from 'react-navigation-stack';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
-export default function Navigator({ navigation }: any) {
+type Props = {
+  navigation: NavigationStackProp;
+};
 
+
+
+export default function Navigator({navigation}: Props) {
+  const [visible, setVisible] = React.useState(false);
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+  const [menuVisible, setMenuVisible] = useState<boolean>(false)
+//  const navigation = useNavigation();
+/* 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => (<Appbar.Header>
+        <Appbar.BackAction onPress={() => navigation.goBack() } />
+        <Appbar.Content title="Project" />
+        <Menu visible={menuVisible} onDismiss={() => setMenuVisible(false) } anchor={<Appbar.Action icon="dots-vertical" color="white" onPress={() => setMenuVisible(true)} />}>
+          <Menu.Item title="My Action" onPress={() =>console.info("action triggered") } />
+        </Menu>
+      </Appbar.Header>)
+    })
+  }, [menuVisible]) */
   const Home = () => {
     return (
       <Stack.Navigator>
@@ -34,6 +57,26 @@ export default function Navigator({ navigation }: any) {
             fontWeight: 'bold',
 
           },
+       /*    headerRight: () => (<View style={{ marginTop: 35 }}>
+            <Ionicons name="ellipsis-vertical-outline" size={24}
+              onPress={openMenu}
+
+            />
+            <Menu
+              visible={visible}
+              onDismiss={closeMenu}
+              anchor={
+                <Appbar.Action icon="menu" color="white" onPress={openMenu} />
+              }>
+              <Menu.Item onPress={() => { console.log('Option 1 was pressed') }} title="Option 1" />
+              <Menu.Item onPress={() => { console.log('Option 2 was pressed') }} title="Option 2" />
+              <Menu.Item onPress={() => { console.log('Option 3 was pressed') }} title="Option 3" disabled />
+            </Menu>
+
+
+          </View>) */
+
+
         }} />
 
         <Stack.Screen name="loginForm" component={LoginForm} options={{
@@ -66,6 +109,7 @@ export default function Navigator({ navigation }: any) {
 
   const Activities = ({ navigation }: any) => {
 
+    
     return (
       <Stack.Navigator>
         <Stack.Screen
@@ -81,6 +125,11 @@ export default function Navigator({ navigation }: any) {
               fontWeight: 'bold',
 
             },
+    /*         headerRight: ()=> (  <Ionicons name="ellipsis-vertical-outline" size={24}
+            onPress={()=>setMenuVisible(true)}
+
+          />) */
+         
           }}
         />
 
@@ -176,3 +225,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+function alert(arg0: string): void {
+  throw new Error('Function not implemented.');
+}
+

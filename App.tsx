@@ -3,13 +3,15 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import Navigator from './app/routes/Navigator';
 import '@fortawesome/fontawesome-free/js/all.js';
-
+import { Provider as PaperProvider } from 'react-native-paper';
 
 
 export default function App() {
 
   return (
-   <Navigator />
+    <PaperProvider>
+      <Navigator />
+   </PaperProvider>
   );
 }
 

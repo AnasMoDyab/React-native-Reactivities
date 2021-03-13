@@ -1,14 +1,20 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, ScrollView } from 'react-native';
+import ActivitYDetailsChat from './ActivityDetailsChat';
 import ActivityDetailsHeader from './ActivityDetailsHeader';
+import ActivitYDetailsInfo from './ActivityDetailsInfo';
+import ActivitYDetailsAttendee from './ActivityDetailsAttendee';
 
 
 export default function ActivityDetails(){
 
 
     return(
-        <View>
+        <ScrollView>
            <ActivityDetailsHeader />
-        </View>
+           <ActivitYDetailsInfo />
+           <ActivitYDetailsAttendee />
+           <ActivitYDetailsChat />
+        </ScrollView>
     )
 }

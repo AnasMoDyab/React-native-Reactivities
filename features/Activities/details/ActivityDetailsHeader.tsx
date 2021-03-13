@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, Icon, Text } from 'react-native-elements';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 export default function ActivityDetailsHeader() {
@@ -24,11 +24,11 @@ export default function ActivityDetailsHeader() {
             <Card.Divider />
             <Button
                     containerStyle={{borderColor:'black'}}
-                    icon={<Icon name='code' color='#ffffff' />}
+                    icon={<Ionicons  size={18} name='settings' color='#ffffff' />}
                     buttonStyle={{ borderRadius: 10,marginBottom: 10, backgroundColor:'tomato', borderColor:'black' }}
                     title='Manage Event' />
                     <Button
-                    icon={<Icon name='code' color='white' />}
+                    icon={<Ionicons name='trash' color='white' size={20}/>}
                     titleStyle={{color:'white'}}
                     buttonStyle={{ borderRadius: 10,  backgroundColor:'teal' }}
                     title='Cancel Activity' />
