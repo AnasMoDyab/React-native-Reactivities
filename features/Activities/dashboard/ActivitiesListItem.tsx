@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, View, StyleSheet, Text } from 'react-native';
-import { ListItem, Avatar, Image, Divider } from 'react-native-elements'
+import { View, StyleSheet } from 'react-native';
+import { ListItem, Avatar } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 
