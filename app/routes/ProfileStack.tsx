@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { DrawerContentComponentProps, DrawerContentOptions } from '@react-navigation/drawer';
 import Profile from '../../features/profile/Profile';
 import TouchableScale from 'react-native-touchable-scale';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -8,12 +8,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 
-type Props = {
-    navigations: DrawerContentComponentProps
-  };
+type Props =  DrawerContentComponentProps<DrawerContentOptions>
   
 
-export default function ProfileStack({ navigations }: Props){
+export default function ProfileStack({ navigation }: Props){
 
     return (
         <Stack.Navigator>
@@ -31,8 +29,8 @@ export default function ProfileStack({ navigations }: Props){
   
               },
               headerLeft: () =>
-              <TouchableScale onPress={() => navigations.navigation.openDrawer()}>
-                  <Ionicons name="menu-outline" size={24} />
+              <TouchableScale onPress={() => navigation.toggleDrawer()}>
+                  <Ionicons style={{padding: 10}} name="menu-outline" size={35} />
 
               </TouchableScale>
             }}

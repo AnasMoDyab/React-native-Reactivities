@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     DrawerContentComponentProps,
+    DrawerContentOptions,
     DrawerContentScrollView,
     DrawerItem
 } from '@react-navigation/drawer';
@@ -8,14 +9,10 @@ import { StyleSheet, View } from 'react-native';
 import { Avatar, Icon, Text } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-interface Props {
-
-    navigation: DrawerContentComponentProps
-
-}
+type Props =  DrawerContentComponentProps<DrawerContentOptions>
 
 export default function DrawerContent({ navigation }: Props) {
-
+    
 
     return (
         <View style={{ flex: 1, backgroundColor:'white' }}>
@@ -27,7 +24,7 @@ export default function DrawerContent({ navigation }: Props) {
                                 rounded
                                 source={require('../../Images/categoryImages/culture.jpg')}
                                 size={60}
-                                onPress={()=> navigation.navigation.navigate('Profile')}
+                                onPress={()=> navigation.navigate('Profile')}
                             />
                             <View style={{ marginLeft: 15, flexDirection: 'column' }}>
                                 <Text style={styles.title}>John Doe</Text>
@@ -49,7 +46,7 @@ export default function DrawerContent({ navigation }: Props) {
                         )}
                         labelStyle={styles.labelStyle}
                         label="Home"
-                        onPress={() => { navigation.navigation.navigate('Home') }}
+                        onPress={() => { navigation.navigate('Home') }}
                     />
 
                    
@@ -63,7 +60,7 @@ export default function DrawerContent({ navigation }: Props) {
                         )}
                         labelStyle={styles.labelStyle}
                         label="Log out"
-                        onPress={() => { navigation.navigation.navigate('Home') }}
+                        onPress={() => {navigation.navigate('Home') }}
                     />
                 </View>
                 </View>

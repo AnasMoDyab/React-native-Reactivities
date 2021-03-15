@@ -9,7 +9,7 @@ export default function Navigator() {
 
 
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <DrawerNavigation />
     </NavigationContainer>
   );

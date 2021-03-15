@@ -1,18 +1,17 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
 import '@fortawesome/fontawesome-free/js/all.js';
 import RootNavigator from './app/routes/RooteNavigation';
 
 
-export default function App() {
 
+const App: () => ReactNode = () => {
   return (
-
-      <RootNavigator />
-
-  );
+    <RootNavigator />
+  )
 }
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +21,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+

@@ -1,22 +1,24 @@
 import React from 'react';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import {
+  DrawerContentOptions,
+  DrawerContentComponentProps,
+} from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack';
+
 import TouchableScale from 'react-native-touchable-scale';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ActivitiesDashboard from '../../features/Activities/dashboard/ActivitiesDashboard';
 import ActivityDetails from '../../features/Activities/details/ActivityDetails';
+import { DrawerActions } from '@react-navigation/native';
 
 
-type Props = {
-    navigations: DrawerContentComponentProps
-  };
-  
+type Props =  DrawerContentComponentProps<DrawerContentOptions>
   
 
 
 const Stack = createStackNavigator();
 
-export default function ActivitiesStack({ navigations }: Props){
+export default function ActivitiesStack({ navigation }: Props){
 
       return (
         <Stack.Navigator>
@@ -34,10 +36,9 @@ export default function ActivitiesStack({ navigations }: Props){
   
               },
               headerLeft: () =>
-              <TouchableScale onPress={() => navigations.navigation.openDrawer()}>
-                  <Ionicons name="menu-outline" size={24} />
-
-              </TouchableScale>
+              (<TouchableScale  onPress={() => navigation.dispatch(DrawerActions.openDrawer())} >
+                  <Ionicons style={{padding: 10}} name="menu-outline" size={35} />
+              </TouchableScale>)
             }}
           />
   

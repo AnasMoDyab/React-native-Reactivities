@@ -1,25 +1,24 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, { FunctionComponent } from 'react';
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import HomePage from '../../features/Home/HomePage';
 import TouchableScale from 'react-native-touchable-scale';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LoginForm from '../../features/users/LoginForm';
 import RegisterForm from '../../features/users/RegisterForm';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { Button } from 'react-native-elements';
+import {
+    DrawerContentOptions,
+    DrawerContentComponentProps,
+  } from '@react-navigation/drawer'
+import { DrawerActions } from '@react-navigation/native';
 
 
-interface Props {
-
-    navigations: DrawerContentComponentProps
-
-}
+type Props =  DrawerContentComponentProps<DrawerContentOptions>
 
 
 const Stack = createStackNavigator();
-export default function HomeStack({ navigations }: Props) {
-
-
-    return (
+ function HomeStack ({ navigation }: Props) {
+         return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={HomePage} options={{
                 title: 'My home',
@@ -32,10 +31,9 @@ export default function HomeStack({ navigations }: Props) {
 
                 },
                 headerLeft: () =>
-                    <TouchableScale onPress={() => navigations.navigation.openDrawer()}>
-                        <Ionicons name="menu-outline" size={24} />
-
-                    </TouchableScale>
+                (<TouchableScale onPress={() => navigation.dispatch(DrawerActions.openDrawer())} >
+                    <Ionicons style={{padding: 10}} name="menu-outline" size={35} />
+                </TouchableScale>)
             }} />
 
             <Stack.Screen name="loginForm" component={LoginForm} options={{
@@ -65,3 +63,5 @@ export default function HomeStack({ navigations }: Props) {
         </Stack.Navigator >
     )
 }
+
+export default HomeStack;
