@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from "react-native";
+import { Dimensions, Platform, StyleSheet } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
 const primaryBlue = Platform.select({
@@ -13,11 +13,34 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:'white',
-    borderRadius: 20,
-    padding: 15,
-    margin: 10
+   
   },
+
+  registerConteiner: {
+    width: Dimensions.get("window").width, //for full screen
+    height: Dimensions.get("window").height //for full screen
+  },
+  fixed: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
+ scrollview: {
+   backgroundColor: 'transparent',
+ 
+ },
+  formContainer : {
+    marginTop: 70,
+    width: '90%',
+    alignItems: "center"
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+},
   forgottenPasswordButtonContainer: {
     width: imageWidth
   },
@@ -28,6 +51,7 @@ const styles = StyleSheet.create({
     width: imageWidth,
     marginBottom: 10,
     borderRadius: 20,
+  
 
   },
   loginButton: {

@@ -10,6 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ActivitiesDashboard from '../../features/Activities/dashboard/ActivitiesDashboard';
 import ActivityDetails from '../../features/Activities/details/ActivityDetails';
 import { DrawerActions } from '@react-navigation/native';
+import { Image } from 'react-native-elements';
 
 
 type Props =  DrawerContentComponentProps<DrawerContentOptions>
@@ -26,6 +27,7 @@ export default function ActivitiesStack({ navigation }: Props){
             name="Activities"
             component={ActivitiesDashboard}
             options={{
+         
               title: 'Activities',
               headerStyle: {
                 backgroundColor: 'white'

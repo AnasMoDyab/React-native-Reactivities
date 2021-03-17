@@ -1,8 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
-
 import agent from "../api/agent";
 import { User, UserFormValue } from "../models/user";
 import { store } from "./store";
+import * as SecureStore from 'expo-secure-store';
+import jwt_decode from "jwt-decode";
 
 export default class UserStore {
     user: User | null = null;
@@ -19,21 +20,24 @@ export default class UserStore {
     }
 
     login = async (creds: UserFormValue) => {
+        console.log(creds);
         try {
             const user = await agent.Account.login(creds);
+            console.log(user);
             store.commonStore.setToken(user.token);
            // this.startRefreshMethodTimer(user);
             runInAction(() => this.user = user);
            // history.push('/activities');
             store.modalStore.closeModal();
         } catch (error) {
+            console.log(error)
             throw error;
         }
     }
 
-    logout = () => {
+    logout = async () => {
         store.commonStore.setToken(null);
-       // window.localStorage.removeItem('jwt');
+        await SecureStore.deleteItemAsync('jwt')
         this.user = null;
        // history.push('/');
     }
@@ -104,7 +108,7 @@ export default class UserStore {
         }
     } */
 
-   /*  refreshToken = async () => {
+    refreshToken = async () => {
         this.stopRefreashTimer();
         try {
             const user = await agent.Account.refreshToken();
@@ -119,7 +123,8 @@ export default class UserStore {
     }
 
     private startRefreshMethodTimer (user:User) {
-        const jwtToken = JSON.parse(atob(user.token.split('.')[1]));
+        console.log(user.token);
+        const jwtToken = JSON.parse(jwt_decode(user.token.split('.')[1]));
         const expires = new Date(jwtToken.exp * 1000);
         const timeout = expires.getTime()- Date.now() -(60 *1000);
 
@@ -129,5 +134,5 @@ export default class UserStore {
     private stopRefreashTimer () {
         clearTimeout(this.refreshTokenTimOut);
     }
- */
+
 }

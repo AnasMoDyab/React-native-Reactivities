@@ -21,15 +21,9 @@ const Stack = createStackNavigator();
          return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={HomePage} options={{
-                title: 'My home',
-                headerStyle: {
-                    backgroundColor: 'white'
-                },
-                headerTintColor: 'tomato',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-
-                },
+                headerTitle:'Home',
+                headerTransparent:true,
+                headerShown:true,
                 headerLeft: () =>
                 (<TouchableScale onPress={() => navigation.dispatch(DrawerActions.openDrawer())} >
                     <Ionicons style={{padding: 10}} name="menu-outline" size={35} />
@@ -37,27 +31,17 @@ const Stack = createStackNavigator();
             }} />
 
             <Stack.Screen name="loginForm" component={LoginForm} options={{
-                title: 'Sign in',
-                headerStyle: {
-                    backgroundColor: 'white'
-                },
-                headerTintColor: 'tomato',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
+                headerTitle:'Sign in',
+               headerTransparent:true,
+               headerShown:true,
+                             
 
-                },
             }} />
 
             <Stack.Screen name="registerForm" component={RegisterForm} options={{
-                title: 'Sign up',
-                headerStyle: {
-                    backgroundColor: 'white'
-                },
-                headerTintColor: 'tomato',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-
-                },
+                headerTitle:'Register',
+                 headerTransparent:true,
+                 headerShown:true,
             }} />
 
         </Stack.Navigator >

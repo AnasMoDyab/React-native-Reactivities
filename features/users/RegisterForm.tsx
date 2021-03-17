@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ImageBackground, ScrollView, View } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from "./styles";
@@ -8,15 +8,17 @@ import { Formik } from 'formik';
 
 
 export default function RegisterForm() {
-
+    const image = require('../../Images/categoryImages/back.jpg');
     return (
-        <ScrollView style={{backgroundColor:'teal'}}>
+        <View>
+         
+        <ScrollView style={[styles.scrollview]}>
             <Formik
                 initialValues={{ firstName: '', lastName: '', email: '', password: '', error: null }}
                 onSubmit={(values, { setErrors }) => console.log(values)}
             >
                 {({ handleSubmit, isSubmitting, errors }) => (
-                    <View style={styles.container}>
+                    <View style={styles.formContainer}>
                         <Input
                             label='First Name'
                             labelStyle={styles.labelInput}
@@ -91,5 +93,10 @@ export default function RegisterForm() {
                     </View>)}
             </Formik>
         </ScrollView>
+        <ImageBackground
+            style={[styles.fixed, styles.registerConteiner, {zIndex: -1}]}
+            source={image}
+        />
+        </View>
     )
 }

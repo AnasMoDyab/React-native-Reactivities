@@ -2,26 +2,25 @@ import { StoreContext } from './store';
 import { ServerErrors } from './../models/serverErrors';
 import { makeAutoObservable, reaction } from 'mobx';
 import { useContext } from 'react';
-
+import * as SecureStore from 'expo-secure-store';
 
 export default class CommonStore {
     error: ServerErrors | null = null;
-    token: string | null= window.localStorage.getItem('jwt');
+    token: string | null=null;
     appLoaded = false;
     darkMode = false;
 
 
     constructor(){
         makeAutoObservable(this);
-        
-        reaction(
-            ()=> this.token,
-            token => 
+    
+        reaction(()=> this.token,
+            async token => 
              {
                  if(token){
-                     window.localStorage.setItem('jwt', token);
+                    await SecureStore.setItemAsync('jwt', token);
                  }else {
-                     window.localStorage.removeItem('jwt')
+                    await SecureStore.deleteItemAsync('jwt')
                  }
              }
         )
@@ -34,12 +33,10 @@ export default class CommonStore {
     setToken = (token :string | null)=>{
         this.token = token;
     }
-
-    setApploaded = ()=> {
+ 
+   setApploaded = ()=> {
         this.appLoaded= true;
     }
-    setDarkMode= ()=> {
-        this.darkMode= !this.darkMode;
-    }
+ 
 
 }

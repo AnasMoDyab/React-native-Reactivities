@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements'
 import TouchableScale from 'react-native-touchable-scale';
 import { useNavigation } from '@react-navigation/native';
@@ -7,63 +7,72 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 export default function ActivitiesListItem() {
   const navigation = useNavigation();
+  const image =  require('../../../Images/categoryImages/back.jpg');
   return (
-    <ScrollView style={{backgroundColor:'tomato'}}>
-      <ListItem
-        Component={TouchableScale}
-        bottomDivider
-        onPress={(event) => navigation.navigate('activityDetails')}
-      
-      >
-        <Avatar
-          rounded
-          size="medium"
-          source={require('./images/user2.png')}
-        />
-        <ListItem.Content style={styles.subtitleView}>
-          <ListItem.Title style={{ color: 'tomato', fontWeight: 'bold' }}>
-            Future Activity 2
+    <ImageBackground source={image} style={styles.image}>
+      <ScrollView>
+        <ListItem
+          Component={TouchableScale}
+          bottomDivider
+          onPress={(event) => navigation.navigate('activityDetails')}
+
+        >
+          <Avatar
+            rounded
+            size="medium"
+            source={require('./images/user2.png')}
+          />
+          <ListItem.Content style={styles.subtitleView}>
+            <ListItem.Title style={{ color: 'tomato', fontWeight: 'bold' }}>
+              Future Activity 2
             </ListItem.Title>
-          <ListItem.Title style={{ color: 'black', borderRadius: 20, borderColor: 'red' }}>
-            Hoset by
+            <ListItem.Title style={{ color: 'black', borderRadius: 20, borderColor: 'red' }}>
+              Hoset by
                     <ListItem.Subtitle style={{ color: 'tomato', fontWeight: 'bold' }}>  Bob </ListItem.Subtitle>
-          </ListItem.Title>
+            </ListItem.Title>
 
-          <ListItem.Subtitle style={{ color: 'black', fontWeight: 'bold' }}>
-            07 05 2021 12:44 PMJamies Italian
+            <ListItem.Subtitle style={{ color: 'black', fontWeight: 'bold' }}>
+              07 05 2021 12:44 PMJamies Italian
             </ListItem.Subtitle>
-          <ListItem.Subtitle style={{ color: 'black' }}>
-            Vice Chairman
+            <ListItem.Subtitle style={{ color: 'black' }}>
+              Vice Chairman
             </ListItem.Subtitle>
-          <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', margin: 10, justifyContent: 'space-between' }}>
-            <Avatar
-              rounded
-              size="small"
-              source={require('./images/user2.png')}
-            />
-            <View style={{ flex: 0.05 }} />
-            <Avatar
-              rounded
-              size="small"
-              source={require('./images/user2.png')}
-            />
-            <View style={{ flex: 0.05 }} />
-            <Avatar
+            <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', margin: 10, justifyContent: 'space-between' }}>
+              <Avatar
+                rounded
+                size="small"
+                source={require('./images/user2.png')}
+              />
+              <View style={{ flex: 0.05 }} />
+              <Avatar
+                rounded
+                size="small"
+                source={require('./images/user2.png')}
+              />
+              <View style={{ flex: 0.05 }} />
+              <Avatar
 
-              rounded
-              size="small"
-              source={require('./images/user2.png')}
-            />
-          </View>
-        </ListItem.Content>
-        <ListItem.Chevron color="white" />
-      </ListItem>
-    </ScrollView>
+                rounded
+                size="small"
+                source={require('./images/user2.png')}
+              />
+            </View>
+          </ListItem.Content>
+          <ListItem.Chevron color="white" />
+        </ListItem>
+
+      </ScrollView>
+    </ImageBackground>
 
   );
 }
 
 const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  },
   subtitleView: {
     borderRadius: 10,
 
